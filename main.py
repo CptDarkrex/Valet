@@ -180,11 +180,18 @@ async def slash2(interaction: discord.Interaction):
 async def slash2(interaction: discord.Interaction, name:str, description:str, birth:str, img_id:str):
     user_id = interaction.user.id
     # profile_name(user_id, name)
+
     # profile_description_text(user_id, description)
+    user_id = (user_id,)
+    sql_statement = "SELECT usr_id FROM profile_card_users WHERE usr_id = %s"
+    create_cursor.execute(sql_statement, user_id)
+    usr_id = create_cursor.fetchall()
 
-    profile_data(user_id, name, birth, description, img_id)
-
-    await interaction.response.send_message(f"Success! created you profile!", ephemeral=False)
+    if user_id in usr_id:
+        await interaction.response.send_message(f"Failed, you already have a profile! if you wish to update use the update commmand", ephemeral=False)
+    else:
+        profile_data(user_id, name, birth, description, img_id)
+        await interaction.response.send_message(f"Success! created you profile!", ephemeral=False)
 
 
 #   ===== Music Commands =====  #
@@ -234,13 +241,6 @@ async def slash2(interaction: discord.Interaction):
     except Exception as err:
         print(err)
     await interaction.response.send_message(f"I am working! I was made with Discord.py!", ephemeral = False)
-
-
-
-
-
-
-
 
 
 
