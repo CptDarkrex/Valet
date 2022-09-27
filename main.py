@@ -1,9 +1,9 @@
-#===================================================#
-#=  Project Tomori                                 =#
-#=  Bot for personal use the zerotwo alternative   =#
-#=  Created by Carlos Rodriguez                    =#
-#=  Copyright reserved Lubris                      =#
-#===================================================#
+#   ==========================================================  #
+#   ===== Project Tomori                                 =====  #
+#   ===== Bot for personal use the zerotwo alternative   =====  #
+#   ===== Created by Carlos Rodriguez                    =====  #
+#   ===== Copyright reserved Lubris                      =====  #
+#   ==========================================================  #
 
 #   ===== Discord Setup =====   #
 import discord
@@ -51,14 +51,8 @@ for x in create_cursor:
 #   ===== Delete Table =====    #
 # create_cursor.execute("DROP TABLE profile_card_users")
 
-#   ===== Profile Insert into Database ===== #
-def profile_data(usr_id, name, birth, desc, img_id):
-    sql_cd = "INSERT INTO profile_card_users (usr_id, name, birth, description, cus_img_url) VALUES (%s, %s, %s, %s, %s)"
-    sql_values = (usr_id, name, birth, desc, img_id)
-    create_cursor.execute(sql_cd, sql_values)
-    mariadb_connection.commit()
 
-print(create_cursor.rowcount)
+
 
 #   ===== Testing Some random Shanonigans ===== #
 # sql_statement = "SELECT * FROM profile_card_users WHERE usr_id = %s"
@@ -70,6 +64,52 @@ print(create_cursor.rowcount)
 #
 # print(namo)
 
+
+#   ===========================   #
+#   ===== Profile backend =====   #
+#   ===========================   #
+
+#   ===== Profile Insert into Database ===== #
+def profile_data(usr_id, name, birth, desc, img_id):
+    sql_cd = "INSERT INTO profile_card_users (usr_id, name, birth, description, cus_img_url) VALUES (%s, %s, %s, %s, %s)"
+    sql_values = (usr_id, name, birth, desc, img_id)
+    create_cursor.execute(sql_cd, sql_values)
+    mariadb_connection.commit()
+
+#   ===== Profile Name Update =====   #
+def profile_data_name(usr_id, name):
+    sql_cd = "UPDATE profile_card_users SET name = %s WHERE usr_id = %s"
+    sql_values = (name, usr_id)
+    create_cursor.execute(sql_cd, sql_values)
+    mariadb_connection.commit()
+
+#   ===== Profile Birth Update =====   #
+def profile_data_birth(usr_id, birth):
+    sql_cd = "UPDATE profile_card_users SET birth = %s WHERE usr_id = %s"
+    sql_values = (birth, usr_id)
+    create_cursor.execute(sql_cd, sql_values)
+    mariadb_connection.commit()
+
+#   ===== Profile Description Update =====   #
+def profile_data_desc(usr_id, desc):
+    sql_cd = "UPDATE profile_card_users SET description = %s WHERE usr_id = %s"
+    sql_values = (desc, usr_id)
+    create_cursor.execute(sql_cd, sql_values)
+    mariadb_connection.commit()
+
+#   ===== Profile Profile Background Update =====   #
+def profile_data_pbg(usr_id, pbg):
+    sql_cd = "UPDATE profile_card_users SET cus_img_url = %s WHERE usr_id = %s"
+    sql_values = (pbg, usr_id)
+    create_cursor.execute(sql_cd, sql_values)
+    mariadb_connection.commit()
+
+print(create_cursor.rowcount)
+
+
+#   ============================    #
+#   ===== Profile Frontend =====    #
+#   ============================    #
 
 # ===== Profile Drawing Functions =====  #
 def profile_create(usr):
@@ -142,6 +182,9 @@ embed.set_image(url="https://c4.wallpaperflare.com/wallpaper/771/807/811/anime-a
 embed.add_field(name="Field 1 Title", value="This is the value for field 1. This is NOT an inline field.", inline=False)
 embed.add_field(name="Field 2 Title", value="This is the value for field 1. This is NOT an inline field.", inline=False)
 
+#   ===== Developement Variables =====  #
+dev_server_id = 944147234562400256
+
 
 #   ===== Set up =====  #
 class aclient(discord.Client):
@@ -152,7 +195,7 @@ class aclient(discord.Client):
     async def on_ready(self):
         await self.wait_until_ready()
         if not self.synced: #check if slash commands have been synced
-            await tree.sync(guild = discord.Object(id=944147234562400256)) #guild specific: leave blank if global (global registration can take 1-24 hours)
+            await tree.sync(guild = discord.Object(id=dev_server_id)) #guild specific: leave blank if global (global registration can take 1-24 hours)
             self.synced = True
         print(f"We have logged in as {self.user}.")
 
@@ -162,25 +205,30 @@ tree = app_commands.CommandTree(client)
 #   ==========================  #
 #   ===== Slash Commands =====  #
 #   ==========================  #
-@tree.command(guild = discord.Object(id=944147234562400256), name = 'embed', description='testing') #guild specific slash command
-async def slash2(interaction: discord.Interaction):
-    await interaction.response.send_message(f"I am working ! I was made with Discord.py!", ephemeral = False, embed=embed)
 
-@tree.command(guild = discord.Object(id=944147234562400256), name = 'hi', description='testing') #guild specific slash command
+#   ===== Slash command template =====  #
+@tree.command(guild = discord.Object(id=dev_server_id), name = 'hi', description='testing') #guild specific slash command
 async def slash2(interaction: discord.Interaction):
     await interaction.response.send_message(f"I am working! I was made with Discord.py!", ephemeral = False)
 
-@tree.command(guild = discord.Object(id=944147234562400256), name = 'profile', description='A profile card of who you are accross all servers with this bot in it.') #guild specific slash command
+#   =====================================   #
+#   ===== Profile Command sequences =====   #
+#   =====================================   #
+
+@tree.command(guild = discord.Object(id=dev_server_id), name = 'embed', description='testing out the embed') #guild specific slash command
+async def slash2(interaction: discord.Interaction):
+    await interaction.response.send_message(f"I am working ! I was made with Discord.py!", ephemeral = False, embed=embed)
+
+@tree.command(guild = discord.Object(id=dev_server_id), name = 'profile', description='A profile card of who you are accross all servers with this bot in it.') #guild specific slash command
 async def slash2(interaction: discord.Interaction):
     user = interaction.user.id
     profile_create(user)
     await interaction.response.send_message(ephemeral = False, file=discord.File(f"completed_profiles/{user}.jpg"))
 
-@tree.command(guild = discord.Object(id=944147234562400256), name = 'create_profile', description='creates a profile card. Birth is in YY/MM/DD format. Paste a URL in img_id (optional)') #guild specific slash command
+@tree.command(guild = discord.Object(id=dev_server_id), name = 'create_profile', description='creates a profile card. Birth is in YY/MM/DD format. Paste a URL in img_id (optional)') #guild specific slash command
 async def slash2(interaction: discord.Interaction, name:str, description:str, birth:str, img_id:str):
     user_id = interaction.user.id
     # profile_name(user_id, name)
-
     # profile_description_text(user_id, description)
     user_id = (user_id,)
     sql_statement = "SELECT usr_id FROM profile_card_users WHERE usr_id = %s"
@@ -193,9 +241,37 @@ async def slash2(interaction: discord.Interaction, name:str, description:str, bi
         profile_data(user_id, name, birth, description, img_id)
         await interaction.response.send_message(f"Success! created you profile!", ephemeral=False)
 
+#   ===== Profile Updates ===== #
+@tree.command(guild = discord.Object(id=dev_server_id), name = 'update_profile_name', description='updates your profile name!') #guild specific slash command
+async def slash2(interaction: discord.Interaction, name:str):
+    user_id = interaction.user.id
+    profile_data_name(user_id, name)
+    await interaction.response.send_message(f"Success! Changed name", ephemeral = False)
 
+@tree.command(guild = discord.Object(id=dev_server_id), name = 'update_profile_birth', description='updates your profile birth!') #guild specific slash command
+async def slash2(interaction: discord.Interaction, birth:str):
+    user_id = interaction.user.id
+    profile_data_birth(user_id, birth)
+    await interaction.response.send_message(f"Success! Changed birth", ephemeral = False)
+
+@tree.command(guild = discord.Object(id=dev_server_id), name = 'update_profile_desc', description='updates your profile description!') #guild specific slash command
+async def slash2(interaction: discord.Interaction, description:str):
+    user_id = interaction.user.id
+    profile_data_desc(user_id, description)
+    await interaction.response.send_message(f"Success! Changed description", ephemeral = False)
+
+@tree.command(guild = discord.Object(id=dev_server_id), name = 'update_profile_background', description='updates your profile background!') #guild specific slash command
+async def slash2(interaction: discord.Interaction, backgroud_url:str):
+    user_id = interaction.user.id
+    profile_data_pbg(user_id, backgroud_url)
+    await interaction.response.send_message(f"Success! Changed background", ephemeral = False)
+
+
+#   ==========================  #
 #   ===== Music Commands =====  #
-@tree.command(guild = discord.Object(id=944147234562400256), name = 'play', description='testing') #guild specific slash command 944147234562400256
+#   ==========================  #
+
+@tree.command(guild = discord.Object(id=dev_server_id), name = 'play', description='testing') #guild specific slash command 944147234562400256
 async def slash2(interaction: discord.Interaction, url:str):
     try:
         voice_client = await interaction.user.voice.channel.connect()
@@ -217,7 +293,7 @@ async def slash2(interaction: discord.Interaction, url:str):
         print(err)
     await interaction.response.send_message(f"I am working! I was made with Discord.py!", ephemeral = False)
 
-@tree.command(guild = discord.Object(id=944147234562400256), name = 'pause', description='testing') #guild specific slash command 944147234562400256
+@tree.command(guild = discord.Object(id=dev_server_id), name = 'pause', description='testing') #guild specific slash command 944147234562400256
 async def slash2(interaction: discord.Interaction):
     try:
         voice_clients[interaction.user.guild.id].pause()
@@ -225,7 +301,7 @@ async def slash2(interaction: discord.Interaction):
         print(err)
     await interaction.response.send_message(f"I am working! I was made with Discord.py!", ephemeral = False)
 
-@tree.command(guild=discord.Object(id=944147234562400256), name='resume',description='testing')  # guild specific slash command
+@tree.command(guild=discord.Object(id=dev_server_id), name='resume',description='testing')  # guild specific slash command
 async def slash2(interaction: discord.Interaction):
     try:
         voice_clients[interaction.user.guild.id].resume()
@@ -233,7 +309,7 @@ async def slash2(interaction: discord.Interaction):
         print(err)
     await interaction.response.send_message(f"I am working! I was made with Discord.py!", ephemeral=False)
 
-@tree.command(guild = discord.Object(id=944147234562400256), name = 'stop', description='testing') #guild specific slash command
+@tree.command(guild = discord.Object(id=dev_server_id), name = 'stop', description='testing') #guild specific slash command
 async def slash2(interaction: discord.Interaction):
     try:
         voice_clients[interaction.user.guild.id].stop()
