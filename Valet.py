@@ -1,14 +1,14 @@
-#   ==========================================================  #
-#   ===== Project Tomori                                 =====  #
-#   ===== Bot for personal use the zerotwo alternative   =====  #
-#   ===== Created by Carlos Rodriguez                    =====  #
-#   ===== Copyright reserved Lubris                      =====  #
-#   ==========================================================  #
+#   ===========================================================  #
+#   ===== Project Valet                                   =====  #
+#   ===== Bot for personal use, the zerotwo alternative   =====  #
+#   ===== Created by Carlos Rodriguez                     =====  #
+#   ===== Copyright reserved Lubris                       =====  #
+#   ===========================================================  #
 
 #   ===== Discord Setup =====   #
 import discord
 from discord import app_commands
-from discord.ext import commands
+from discord.ext import ipc, commands
 
 #   ===== Pillow Setup =====   #
 from PIL import Image, ImageFont, ImageDraw
@@ -180,9 +180,10 @@ dev_server_id = 944147234562400256
 
 #   ===== Set up =====  #
 class aclient(discord.Client):
-    def __init__(self):
-        super().__init__(intents = discord.Intents.default())
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.synced = False #we use this so the bot doesn't sync commands more than once
+        self.server = ipc.Server(self, secret_key="my_secret_key")
 
     async def on_ready(self):
         await self.wait_until_ready()
@@ -191,9 +192,29 @@ class aclient(discord.Client):
             self.synced = True
         print(f"We have logged in as {self.user}.")
 
-client = aclient()
+    async def on_ipc_error(self, endpoint, error):
+        """Called upon an error being raised within an IPC route"""
+        print(endpoint, "raised", error)
+
+
+
+
+client = aclient(intents = discord.Intents.default())
 tree = app_commands.CommandTree(client)
 
+# @client.server.route()
+# async def get_member_count(data):
+#     guild = client.get_guild(data.guild_id)  # get the guild object using parsed guild_id
+
+my_bot = aclient(intents=discord.Intents.all())
+
+
+@my_bot.server.route()
+async def get_member_count(data):
+    guild = my_bot.get_guild(data.guild_id)   #get the guild object using parsed guild_id
+    return guild.member_count  # return the member count to the client
+
+my_bot.server.start()
 #   ==========================  #
 #   ===== Slash Commands =====  #
 #   ==========================  #
