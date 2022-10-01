@@ -219,7 +219,7 @@ my_bot.server.start()
 #   ===== Slash Commands =====  #
 #   ==========================  #
 
-#   ===== Slash command template =====  #
+#   ===== Slash command templates =====  #
 @tree.command(guild = discord.Object(id=dev_server_id), name = 'hi', description='testing') #guild specific slash command
 async def slash2(interaction: discord.Interaction):
     await interaction.response.send_message(f"I am working! I was made with Discord.py!", ephemeral = False)
@@ -343,5 +343,5 @@ async def slash2(interaction: discord.Interaction):
 
 
 
-
-client.run('OTY0MzY4NDg3NjAwNDk2Njgw.Glb6te.iSHY8O_AP_OnbclOPwHsRsjOwkZUYjuD8A-tOs')
+if __name__ == '__main__':
+    client.run('OTY0MzY4NDg3NjAwNDk2Njgw.Ga2giE.omPDzbwOEYo9H3DwOhkMFfWc9FtBx547IjmMRI')
