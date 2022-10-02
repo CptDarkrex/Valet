@@ -37,7 +37,6 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 
 ### Built With
-* [![Flask][Flask.com]][Flask-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
 
