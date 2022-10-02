@@ -22,7 +22,7 @@ def dashboard():
     id, avatar, username, usertag = user_object.get('id'), user_object.get('avatar'), \
                                     user_object.get('username'), user_object.get('discriminator')
 
-    return render_template('dashboard.html',
+    return render_template('index.html',
                            render_user_avatar=f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png',
                            render_username=f'{username}#{usertag}',
                            render_guild=user_guild_object
