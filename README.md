@@ -101,7 +101,7 @@ Project Link: [https://github.com/CptDarkrex/Valet](https://github.com/CptDarkre
 
 * [Codervent](http://codervent.com/) provided us with frontend development
 * [Devstriker](https://www.youtube.com/c/DevStriker) go watch him if you wish to learn the basics of discord bot development
-* []()
+
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
