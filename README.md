@@ -41,9 +41,6 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -90,8 +87,6 @@ After you have installed python3 go to your terminal and install the following.
   pip install asyncio
   ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- CONTACT -->
 ## Contact
@@ -100,9 +95,6 @@ Your Name - [@twitter_handle](https://twitter.com/ColleenRhardt) - rodrigcp22@gm
 
 Project Link: [https://github.com/CptDarkrex/Valet](https://github.com/CptDarkrex/Valet)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
@@ -110,9 +102,6 @@ Project Link: [https://github.com/CptDarkrex/Valet](https://github.com/CptDarkre
 * [Codervent](http://codervent.com/) provided us with frontend development
 * [Devstriker](https://www.youtube.com/c/DevStriker) go watch him if you wish to learn the basics of discord bot development
 * []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
