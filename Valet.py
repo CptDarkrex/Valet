@@ -33,8 +33,9 @@ create_cursor = mariadb_connection.cursor()#dictionary=True <--- can make the da
 # for x in create_cursor:
 #     print(x)
 
-#   ===== Create Tables =====   #
-# create_cursor.execute("CREATE TABLE profile_card_users (usr_id BIGINT, name VARCHAR(24), birth DATE, description VARCHAR(250), cus_img_url VARCHAR(9000))")
+  # ===== Create Tables =====   #
+# create_cursor.execute("CREATE TABLE profile (usr_id BIGINT PRIMARY KEY, name VARCHAR(24), birth DATE, description VARCHAR(250), cus_img_url VARCHAR(9000))") <-- CREATES THE PROFILE TABLE MAIN TABLE
+create_cursor.execute("CREATE TABLE svr_mod ()")
 
 create_cursor.execute("SHOW TABLES")
 for x in create_cursor:
@@ -42,7 +43,10 @@ for x in create_cursor:
 
 #   ===== Delete Table =====    #
 # create_cursor.execute("DROP TABLE profile_card_users")
-
+#
+# create_cursor.execute("SHOW TABLES")
+# for x in create_cursor:
+#     print(x)
 
 
 
@@ -192,9 +196,6 @@ class aclient(discord.Client):
             self.synced = True
         print(f"We have logged in as {self.user}.")
 
-    async def on_ipc_error(self, endpoint, error):
-        """Called upon an error being raised within an IPC route"""
-        print(endpoint, "raised", error)
 
 
 
@@ -202,19 +203,6 @@ class aclient(discord.Client):
 client = aclient(intents = discord.Intents.default())
 tree = app_commands.CommandTree(client)
 
-# @client.server.route()
-# async def get_member_count(data):
-#     guild = client.get_guild(data.guild_id)  # get the guild object using parsed guild_id
-
-my_bot = aclient(intents=discord.Intents.all())
-
-
-@my_bot.server.route()
-async def get_member_count(data):
-    guild = my_bot.get_guild(data.guild_id)   #get the guild object using parsed guild_id
-    return guild.member_count  # return the member count to the client
-
-my_bot.server.start()
 #   ==========================  #
 #   ===== Slash Commands =====  #
 #   ==========================  #
@@ -342,6 +330,4 @@ async def slash2(interaction: discord.Interaction):
 
 
 
-
-if __name__ == '__main__':
-    client.run('OTY0MzY4NDg3NjAwNDk2Njgw.Ga2giE.omPDzbwOEYo9H3DwOhkMFfWc9FtBx547IjmMRI')
+client.run('OTY0MzY4NDg3NjAwNDk2Njgw.GgLJSJ.1CduV1RzPdnAMLiis2yrflmQbh9QevukIQOphs')

@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, render_template
 from routes.discord_oauth import DiscordOauth
 
+
 app = Flask(__name__)
 
 # Route for landing page
@@ -22,11 +23,11 @@ def dashboard():
     id, avatar, username, usertag = user_object.get('id'), user_object.get('avatar'), \
                                     user_object.get('username'), user_object.get('discriminator')
 
-    return render_template('index.html',
+    return render_template('dashboard.html',
                            render_user_avatar=f'https://cdn.discordapp.com/avatars/{id}/{avatar}.png',
                            render_username=f'{username}#{usertag}',
-                           render_guild=user_guild_object
-
+                           render_guild=user_guild_object,
+                           render_id=id
                            )
 
 if __name__ == '__main__':

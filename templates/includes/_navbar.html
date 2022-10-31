@@ -7,6 +7,19 @@
     </a>
   </div>
   <ul class="sidebar-menu do-nicescrol">
+      <li>
+          <a class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" data-toggle="dropdown" href="javascript:void();"><i class="fa fa-bell-o"></i> Channel</a>
+          <ul class="dropdown-menu dropdown-menu-right">
+              {% for guild in render_guild %}
+                <li><a href="/me/guilds/{{guild.id}}">
+                    <i class="zmdi"></i><span>{{ guild }}</span>
+                </a></li>
+              {% endfor %}
+          </ul>
+<!--          <a href="index.html">-->
+<!--              <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>-->
+<!--          </a>-->
+     </li>
      <li class="sidebar-header">MAIN NAVIGATION</li>
      <li>
        <a href="index.html">
@@ -104,15 +117,15 @@
    </li>
    <li class="nav-item">
      <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-       <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
+       <span class="user-profile"><img src={{render_user_avatar}} class="img-circle" alt="user avatar"></span>
      </a>
      <ul class="dropdown-menu dropdown-menu-right">
       <li class="dropdown-item user-details">
        <a href="javaScript:void();">
           <div class="media">
-            <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+            <div class="avatar"><img class="align-self-start mr-3" src={{render_user_avatar}} alt="user avatar"></div>
            <div class="media-body">
-           <h6 class="mt-2 user-title">{{ render_username }}</h6> <!-- right here -->
+           <h6 class="mt-2 user-title">{{ render_user_name }}</h6> <!-- right here -->
            <p class="user-subtitle">mccoy@example.com</p>
            </div>
           </div>
@@ -125,7 +138,7 @@
        <li class="dropdown-divider"></li>
        <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
        <li class="dropdown-divider"></li>
-       <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+       <li class="dropdown-item"><i class="icon-power mr-2"></i><a href="{{render_logout}}">Logout</a></li>
      </ul>
    </li>
  </ul>
