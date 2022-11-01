@@ -51,9 +51,9 @@ To start editing we need to download and install the project, let's start with t
 First we need to download python3 here's a video on how to do just that.
 After you have installed python3 go to your terminal and install the following.
 
-* discord.py
+* discord.ext
   ```sh
-  pip install discord.py
+  pip install discord.ext
   ```
 
 * discord.ext
@@ -64,11 +64,6 @@ After you have installed python3 go to your terminal and install the following.
 * pillow
   ```sh
   pip install Pillow
-  ```
-
-* mysql
-  ```sh
-  pip install mysql
   ```
 
 * mysql
