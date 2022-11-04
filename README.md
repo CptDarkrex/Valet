@@ -85,7 +85,7 @@ After you have installed python3 go to your terminal and install the following.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/ColleenRhardt) - rodrigcp22@gmail.com
+Your Name - [@twitter_handle](https://twitter.com/ColleenRhardt) 
 
 Project Link: [https://github.com/CptDarkrex/Valet](https://github.com/CptDarkrex/Valet)
 
