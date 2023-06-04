@@ -2,8 +2,8 @@ import requests
 
 
 class Oauth:
-    client_id = "964368487600496680"  # Client ID
-    client_secret = "Hq7OTqnBOVOGVbo6ZqG3DtbZTbSkZAYi"  # Your Client Secret here
+    client_id = "client id"  # Client ID
+    client_secret = "client secret"  # Your Client Secret here
     redirect_uri = "http://127.0.0.1:5000/login"
     scope = "identify%20email%20guilds"
     discord_login_url = "https://discord.com/api/oauth2/authorize?client_id=964368487600496680&redirect_uri=http%3A%2F%2F127.0.0.1%3A5000%2Flogin&response_type=code&scope=identify%20email%20guilds"  # Paste the generated Oauth2 link here
