@@ -23,7 +23,7 @@ import asyncio
 import os
 
 #   ===== Maria DB =====    #
-mariadb_connection = mariadb.connect(user='root', password='zqf3afr1GVQ9uae-cwe', host='10.20.10.35', port='3306', database= 'kei_database')
+mariadb_connection = mariadb.connect(user='user', password='password', host='some ip', port='some port', database= 'some database')
 create_cursor = mariadb_connection.cursor()#dictionary=True <--- can make the database into dictionary format
 
 #   ===== Create Database ===== #
@@ -323,4 +323,4 @@ async def slash2(interaction: discord.Interaction):
 
 
 
-client.run('OTY0MzY4NDg3NjAwNDk2Njgw.Glb6te.iSHY8O_AP_OnbclOPwHsRsjOwkZUYjuD8A-tOs')
+client.run('some token')
