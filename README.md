@@ -26,13 +26,15 @@
 </div>
 
 <!-- ABOUT THE PROJECT -->
-<!-- ## About The Project
+## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
+<p>Valet is a multipurpose bot. The main goal of this project is to provide the server admins and more a cheap easy to use bot that doesn't rely on external parties. Currently both versions provided here by me are deprecated and will not be receiving any updates until I am confident the new version of the bot is stable. If you wish to see the progress of this bot you can join my discord server here:  https://discord.gg/66P4rAbXy2 </p>
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+<p>You can use the code of both versions provided here as a guide or template. The code currently provided can be used however you like. However the new version (planned release: 15/10/23) which is more professional and better set out will carry a license in which will state that no one can use it for financial gain, but if you wish to use it for financial gain then you must subscribe to me when the time comes, the pricing will be around 5 USD a month.</P>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p> 
 
 
 
